@@ -1,4 +1,7 @@
 // all of these are from lecture05
+
+import java.util.NoSuchElementException;
+
 public class DSABinarySearchTree {
     private class TreeNode {
         private String m_key;
@@ -46,7 +49,7 @@ public class DSABinarySearchTree {
 
     //accessors
     public Object find(String key) {
-        return findKey(key, m_root);
+        return findRec(key, m_root);
     }
 
     private Object findRec(String key, TreeNode currNode) {
