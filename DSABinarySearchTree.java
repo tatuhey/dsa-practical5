@@ -65,4 +65,19 @@ public class DSABinarySearchTree {
         return value;
     }
 
+    private TreeNode insertRec(String key, TreeNode currNode, Object data) {
+        TreeNode updateNode = currNode;
+        if(currNode == null) {
+            TreeNode newNode = new TreeNode(key, data);
+            updateNode = newNode;
+        }
+        else if(key.equals(currNode.getKey()))
+            throw new IllegalArgumentException("Duplicate key " + key);
+        else if(key.compareTo(currNode.getKey()) < 0)
+            currNode.setLeft(insertRec(key, currNode.getLeft(), data));
+        else
+            currNode.setRight(insertRec(key, currNode.getRight(), data));
+        return updateNode;
+    }
+
 }
