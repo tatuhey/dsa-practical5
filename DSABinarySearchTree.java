@@ -196,8 +196,8 @@ public class DSABinarySearchTree {
     private void compress(TreeNode root, int count) {
 
     }
-    
-    private vineToRoot(TradeNode root, int size) {
+
+    private vineToTree(TradeNode root, int size) {
 
     }
 
