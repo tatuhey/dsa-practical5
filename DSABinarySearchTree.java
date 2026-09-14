@@ -80,4 +80,44 @@ public class DSABinarySearchTree {
         return updateNode;
     }
 
+    private TreeNode deleteRec(String key, TreeNode currNode) {
+        TreeNode updateNode = currNode;
+        if(currNode == null)
+            throw new NoSuchElementException("Key " + key + " not found");
+        else if(key.equals((currNode.getKey())))
+            updateNode = deleteNode(key, currNode);
+        else if(key.compareTo(currNode.getKey()) < 0)
+            currNode.setLeft(deleteRec(key, currNode.getLeft()));
+        else 
+            currNode.setRight(deleteRec(key, currNode.getRight()));
+        return updateNode;
+    }
+
+    private TreeNode deleteNode(String key, TreeNode delNode) {
+        TreeNode updateNode = null;
+        if(delNode.getLeft() == null && delNode.getRight() == null)
+            updateNode = null;
+        else if(delNode.getLeft() != null && delNode.getRight() == null)
+            updateNode = delNode.getLeft();
+        else if(delNode.getLeft() == null && delNode.getRight() != null)
+            updateNode = delNode.getRight();
+        else {
+            updateNode = promoteSuccessor(delNode.getRight());
+            if(updateNode != delNode.getRight())
+                updateNode.setRight(delNode.getRight());
+            updateNode.setLeft(delNode.getLeft());
+        }
+        return updateNode;
+    }
+
+    private TreeNode promoteSuccessor(TreeNode currNode) {
+        TreeNode successor = currNode;
+        if(currNode.getLeft() != null) {
+            successor = promoteSuccessor(currNode.getLeft());
+            if(successor == currNode.getLeft())
+                currNode.setLeft(successor.getRight());
+        }
+        return successor;
+    }
+
 }
