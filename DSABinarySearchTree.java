@@ -123,7 +123,8 @@ public class DSABinarySearchTree {
     // do min() max() height() and balance()
     // gonna do iterative for min max because it is preferred
 
-    public String min(TreeNode currNode) {
+    public int min(TreeNode currNode) {
+        int minKey;
         while (currNode.getLeft() != null)
             currNode = currNode.getLeft();
         minKey = currNode.getKey();
