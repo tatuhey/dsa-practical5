@@ -139,7 +139,67 @@ public class DSABinarySearchTree {
         return maxKey;
     }
 
+    public int height() {
+        return heightRec(m_root);
+    }
+
+    public int heightRec(TreeNode currNode) {
+        int htSoFar, iLeftHt, iRightHt;
+        if(currNode == null)
+            htSoFar = -1;
+        else {
+            iLeftHt = heightRec(currNode.getLeft());
+            iRightHt = heightRec(currNode.getRight());
+            if(iLeftHt > iRightHt)
+                htSoFar = iLeftHt + 1;
+            else
+                htSoFar = iRightHt + 1;
+        }
+        return htSoFar;
+    }
+
+    // balance()
+    // taken from https://en.wikipedia.org/wiki/Day%E2%80%93Stout%E2%80%93Warren_algorithm
+    //        and https://www.geeksforgeeks.org/dsa/day-stout-warren-algorithm-to-balance-given-binary-search-tree/
+    public TreeNode balance() {
+        TreeNode pseudoRoot = null;
+        int size = treeToVine(pseudoRoot);
+        vineToTree(pseudoRoot, size);
+        m_root = pseudoRoot.getRight();
+    }
+
+    private int treeToVine(TreeNode root) {
+        TreeNode tail = root;
+        int count = 0;
+        TreeNode rest = tail.getRight();
+        while(rest != null){
+            if(rest.getLeft() == null) {
+                tail = rest;
+                rest = rest.getRight();
+                count++;
+            } else {
+                TreeNode temp = rest.getLeft();
+                rest.setLeft(temp.getRight());
+                temp.setRight(rest);
+                rest = temp;
+                tail.setRight(temp);
+            }
+        }
+        return count;
+    }
+
+    private int log2(int n) {
+        int result = (int)(Math.log(n) / Math.log(2));
+        return result; 
+    }
+
+    private void compress(TreeNode root, int count) {
+
+    }
     
+    private vineToRoot(TradeNode root, int size) {
+
+    }
 
 
 }
