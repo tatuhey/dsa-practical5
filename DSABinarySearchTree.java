@@ -127,9 +127,19 @@ public class DSABinarySearchTree {
         int minKey;
         while (currNode.getLeft() != null)
             currNode = currNode.getLeft();
-        minKey = currNode.getKey();
+        minKey = Integer.parseInt(currNode.getKey());
         return minKey;
     }
+
+    public int max(TreeNode currNode) {
+        int maxKey;
+        while (currNode.getRight() != null)
+            currNode = currNode.getRight();
+        maxKey = Integer.parseInt(currNode.getKey());
+        return maxKey;
+    }
+
+    
 
 
 }
