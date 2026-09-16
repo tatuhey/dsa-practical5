@@ -186,6 +186,46 @@ public class DSABinarySearchTree {
 
     // balance()
 
+    // inOrder(), preOrder(), and postOrder()
+    // https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php
+    public void inOrder() {
+        inOrderRec(m_root);
+    }
+
+    public void inOrderRec(TreeNode currNode) {
+        if(currNode == null)
+            throw new NoSuchElementException("Tree is empty");
+        inOrderRec(currNode.getLeft());
+        System.out.println(currNode.getKey() + ", ");
+        inOrderRec(currNode.getRight());
+    }
+
+    // https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php
+    public void preOrder() {
+        preOrderRec(m_root);
+    }
+
+    public void preOrderRec(TreeNode currNode) {
+        if(currNode == null)
+            throw new NoSuchElementException("Tree is empty");
+        System.out.println(currNode.getKey() + ", ");
+        preOrderRec(currNode.getLeft());
+        preOrderRec(currNode.getRight());
+    }
+
+    // https://www.w3schools.com/dsa/dsa_algo_binarytrees_postorder.php
+    public void postOrder() {
+        postOrderRec(m_root);
+    }
+
+    public void postOrderRec(TreeNode currNode) {
+        if(currNode == null)
+            throw new NoSuchElementException("Tree is empty");
+        postOrderRec(currNode.getLeft());
+        postOrderRec(currNode.getRight());
+        System.out.println(currNode.getKey() + ", ");
+    }
+
     // TO BALANCE**
     // taken from https://en.wikipedia.org/wiki/Day%E2%80%93Stout%E2%80%93Warren_algorithm
     //        and https://www.geeksforgeeks.org/dsa/day-stout-warren-algorithm-to-balance-given-binary-search-tree/
