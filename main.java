@@ -37,10 +37,8 @@ public class main {
 
     public static void adding(Scanner sc, DSABinarySearchTree bSearchTree) {
         System.out.println("Add a node below. Format is <key,value>");
-        String input;
-        String regex = "[,\\.\\s]";
-        input = sc.nextLine();
-        String[] arr = input.split(regex);
+        String input = sc.nextLine();
+        String[] arr = input.split(",");
         bSearchTree.insert(arr[0], arr[1]);
     }
 
