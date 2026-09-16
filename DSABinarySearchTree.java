@@ -65,6 +65,10 @@ public class DSABinarySearchTree {
         return value;
     }
 
+    public void insert(String key, Object data) {
+        m_root = insertRec(key, m_root, data);
+    }
+
     private TreeNode insertRec(String key, TreeNode currNode, Object data) {
         TreeNode updateNode = currNode;
         if(currNode == null) {
@@ -78,6 +82,10 @@ public class DSABinarySearchTree {
         else
             currNode.setRight(insertRec(key, currNode.getRight(), data));
         return updateNode;
+    }
+
+    public void delete(String key) {
+        m_root = deleteRec(key, m_root);
     }
 
     private TreeNode deleteRec(String key, TreeNode currNode) {
@@ -123,12 +131,21 @@ public class DSABinarySearchTree {
     // do min() max() height() and balance()
     // gonna do iterative for min max because it is preferred
 
-    public int min(TreeNode currNode) {
-        int minKey;
-        while (currNode.getLeft() != null)
+    // public int min(TreeNode currNode) {
+    //     int minKey;
+    //     while (currNode.getLeft() != null)
+    //         currNode = currNode.getLeft();
+    //     minKey = Integer.parseInt(currNode.getKey());
+    //     return minKey;
+    // }
+
+    public String min() {
+        if(m_root == null)
+            throw new NoSuchElementException("Tree is empty");
+        TreeNode currNode = m_root;
+        while(currNode.getLeft() != null)
             currNode = currNode.getLeft();
-        minKey = Integer.parseInt(currNode.getKey());
-        return minKey;
+        return currNode.getKey();
     }
 
     public int max(TreeNode currNode) {
