@@ -148,12 +148,21 @@ public class DSABinarySearchTree {
         return currNode.getKey();
     }
 
-    public int max(TreeNode currNode) {
-        int maxKey;
-        while (currNode.getRight() != null)
+    // public int max(TreeNode currNode) {
+    //     int maxKey;
+    //     while (currNode.getRight() != null)
+    //         currNode = currNode.getRight();
+    //     maxKey = Integer.parseInt(currNode.getKey());
+    //     return maxKey;
+    // }
+
+    public String max() {
+        if(m_root == null)
+            throw new NoSuchElementException("Tree is empty");
+        TreeNode currNode = m_root;
+        while(currNode.getRight() != null)
             currNode = currNode.getRight();
-        maxKey = Integer.parseInt(currNode.getKey());
-        return maxKey;
+        return currNode.getKey();
     }
 
     public int height() {
