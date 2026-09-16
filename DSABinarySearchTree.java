@@ -55,7 +55,7 @@ public class DSABinarySearchTree {
     private Object findRec(String key, TreeNode currNode) {
         Object value = null;
         if(currNode == null)
-            System.out.println("Tree is empty");
+            System.out.println("Key " + key + " not found");
         else if(key.equals(currNode.getKey()))
             value = currNode.getValue();                                   // base case found
         else if(key.compareTo(currNode.getKey()) < 0)

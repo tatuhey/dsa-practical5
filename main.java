@@ -92,10 +92,6 @@ public class main {
         bSearchTree.buildFixedTree();
     }
 
-    public static void deletebuilt(Scanner sc, DSABinarySearchTree bSearchTree) {
-        System.out.println("Removing fixed-tree");
-        bSearchTree.delete("node70");
-    }
 }
 
 
