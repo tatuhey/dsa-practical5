@@ -9,7 +9,7 @@ public class main {
 
         while(selection != 0) {
             System.out.println("Select testing:");
-            System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Add node automatically");
+            System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Build fixed-tree\n0. Exit");
 
             selection = sc.nextInt();
             switch(selection) {
@@ -23,7 +23,7 @@ public class main {
                     displaying(sc, bSearchTree);
                     break;
                 case 4:
-                    autoadding(sc, bSearchTree);
+                    build(sc, bSearchTree);
                     break;
                 case 0:
                     break;
@@ -36,13 +36,21 @@ public class main {
     }
 
     public static void adding(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine(); // to clear the leftover newline from the previous menu choice
+
         System.out.println("Add a node below. Format is <key,value>");
         String input = sc.nextLine();
         String[] arr = input.split(",");
-        bSearchTree.insert(arr[0], arr[1]);
+        if(arr.length != 2) {
+            System.out.println("Invalid format. Format is <key,value>");
+            return;
+        }
+        bSearchTree.insert(arr[0].trim(), arr[1].trim()); // trim() to remove whitespaces around
     }
 
     public static void deleting(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine(); // to clear the leftover newline from the previous menu choice
+
         System.out.println("Remove a node below. Format is <key>");
         String input;
         input = sc.nextLine();
@@ -50,19 +58,24 @@ public class main {
     }
 
     public static void displaying(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine(); // to clear the leftover newline from the previous menu choice
+
         int sel = 10000;
         while(sel != 0) {
-            System.out.println("1. In-order traversal\n2. Pre-order traversal\n3. Post-order traversal");
+            System.out.println("1. In-order traversal\n2. Pre-order traversal\n3. Post-order traversal\n0. exit");
 
             sel = sc.nextInt();
             switch(sel) {
                 case 1:
+                    System.out.println("In-order selected");
                     bSearchTree.inOrder();
                     break;
                 case 2:
+                    System.out.println("Pre-order selected");
                     bSearchTree.preOrder();
                     break;
                 case 3:
+                    System.out.println("Post-order selected.");
                     bSearchTree.postOrder();
                     break;
                 case 0:
@@ -73,12 +86,16 @@ public class main {
         }
     }
 
-    public static void autoadding(Scanner sc, DSABinarySearchTree bSearchTree) {
-        System.out.println("Put number of node: ");
-        int input = sc.nextInt();
-        for(int i = 0; i < input; i++) {
-            bSearchTree.insert("node" + i+1, i+1);
-        }
+    public static void build(Scanner sc, DSABinarySearchTree bSearchTree) {
+        System.out.println("The tree will look as below.");
+        System.out.println("      70\n  30      50\n10  20  40  60");
+        bSearchTree.buildFixedTree();
+    }
+
+    public static void deletebuilt(Scanner sc, DSABinarySearchTree bSearchTree) {
+        System.out.println("Removing fixed-tree");
+        bSearchTree.delete("node70");
     }
 }
+
 

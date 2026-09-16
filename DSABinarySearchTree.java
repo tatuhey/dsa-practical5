@@ -55,7 +55,7 @@ public class DSABinarySearchTree {
     private Object findRec(String key, TreeNode currNode) {
         Object value = null;
         if(currNode == null)
-            throw new NoSuchElementException("Key " + key + " not found"); // base case not found
+            System.out.println("Tree is empty");
         else if(key.equals(currNode.getKey()))
             value = currNode.getValue();                                   // base case found
         else if(key.compareTo(currNode.getKey()) < 0)
@@ -70,10 +70,8 @@ public class DSABinarySearchTree {
     }
 
     private TreeNode insertRec(String key, TreeNode currNode, Object data) {
-        TreeNode updateNode = currNode;
         if(currNode == null) {
-            TreeNode newNode = new TreeNode(key, data);
-            updateNode = newNode;
+            return new TreeNode(key, data);
         }
         else if(key.equals(currNode.getKey()))
             throw new IllegalArgumentException("Duplicate key " + key);
@@ -81,7 +79,7 @@ public class DSABinarySearchTree {
             currNode.setLeft(insertRec(key, currNode.getLeft(), data));
         else
             currNode.setRight(insertRec(key, currNode.getRight(), data));
-        return updateNode;
+        return currNode;
     }
 
     public void delete(String key) {
@@ -91,7 +89,7 @@ public class DSABinarySearchTree {
     private TreeNode deleteRec(String key, TreeNode currNode) {
         TreeNode updateNode = currNode;
         if(currNode == null)
-            throw new NoSuchElementException("Key " + key + " not found");
+            System.out.println("Tree is empty");
         else if(key.equals((currNode.getKey())))
             updateNode = deleteNode(key, currNode);
         else if(key.compareTo(currNode.getKey()) < 0)
@@ -189,41 +187,78 @@ public class DSABinarySearchTree {
     // inOrder(), preOrder(), and postOrder()
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php
     public void inOrder() {
+        if(m_root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
         inOrderRec(m_root);
+        System.out.println();
     }
 
     public void inOrderRec(TreeNode currNode) {
         if(currNode == null)
-            throw new NoSuchElementException("Tree is empty");
+            return; // best case. end of branch reached
         inOrderRec(currNode.getLeft());
-        System.out.println(currNode.getKey() + ", ");
+        System.out.print(currNode.getKey() + ", ");
         inOrderRec(currNode.getRight());
     }
 
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php
     public void preOrder() {
+        if(m_root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
         preOrderRec(m_root);
+        System.out.println();
     }
 
     public void preOrderRec(TreeNode currNode) {
         if(currNode == null)
-            throw new NoSuchElementException("Tree is empty");
-        System.out.println(currNode.getKey() + ", ");
+            return;
+        System.out.print(currNode.getKey() + ", ");
         preOrderRec(currNode.getLeft());
         preOrderRec(currNode.getRight());
     }
 
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_postorder.php
     public void postOrder() {
+        if(m_root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
         postOrderRec(m_root);
+        System.out.println();
     }
 
     public void postOrderRec(TreeNode currNode) {
         if(currNode == null)
-            throw new NoSuchElementException("Tree is empty");
+            return;
         postOrderRec(currNode.getLeft());
         postOrderRec(currNode.getRight());
-        System.out.println(currNode.getKey() + ", ");
+        System.out.print(currNode.getKey() + ", ");
+    }
+
+    // https://www.w3schools.com/dsa/dsa_data_binarytrees.php
+    public void buildFixedTree() {
+        TreeNode node70 = new TreeNode("70", null);
+        TreeNode node30 = new TreeNode("30", null);
+        TreeNode node50 = new TreeNode("50", null);
+        TreeNode node10 = new TreeNode("10", null);
+        TreeNode node20 = new TreeNode("20", null);
+        TreeNode node40 = new TreeNode("40", null);
+        TreeNode node60 = new TreeNode("60", null);
+
+        node70.setLeft(node30);
+        node70.setRight(node50);
+
+        node30.setLeft(node10);
+        node30.setRight(node20);
+
+        node50.setLeft(node40);
+        node50.setRight(node60);
+
+        m_root = node70;
     }
 
     // TO BALANCE**
