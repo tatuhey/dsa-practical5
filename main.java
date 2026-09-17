@@ -1,7 +1,5 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.swing.tree.TreeNode;
 public class main {
 
     public static void main(String[] args ) {
@@ -112,8 +110,14 @@ public class main {
 
     public static void build(Scanner sc, DSABinarySearchTree bSearchTree) {
         System.out.println("The tree will look as below.");
-        System.out.println("      70\n  30      50\n10  20  40  60\nkey format as follow: node70");
-        // bSearchTree.buildFixedTree();
+        System.out.println("      40\n  20      60\n10  30  50  70\nkey format as follow: node70");
+        bSearchTree.insert("40",40);
+        bSearchTree.insert("20", 20);
+        bSearchTree.insert("60", 60);
+        bSearchTree.insert("10", 10);
+        bSearchTree.insert("30", 30);
+        bSearchTree.insert("50", 50);
+        bSearchTree.insert("70", 70);
 
     }
 
