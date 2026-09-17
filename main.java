@@ -1,5 +1,5 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+
 public class main {
 
     public static void main(String[] args ) {
@@ -10,7 +10,7 @@ public class main {
 
         while(selection != 0) {
             System.out.println("Select testing:");
-            System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Build fixed-tree\n5. Find node\n0. Exit");
+            System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Build fixed-tree\n5. Find node\n6. Min\n7. Max\n8. Tree height\n9. Balance percentage\n0. Exit");
 
             try{
                 selection = sc.nextInt();
@@ -29,6 +29,19 @@ public class main {
                         break;
                     case 5:
                         finding(sc, bSearchTree);
+                        break;
+                    case 6:
+                        minimum(sc, bSearchTree);
+                        break;
+                    case 7:
+                        maximum(sc, bSearchTree);
+                        break;
+                    case 8:
+                        treeHeight(sc, bSearchTree);
+                        break;
+                    case 9:
+                        balancing(sc, bSearchTree);
+                        break;
                     case 0:
                         break;
                     default:
@@ -110,7 +123,7 @@ public class main {
 
     public static void build(Scanner sc, DSABinarySearchTree bSearchTree) {
         System.out.println("The tree will look as below.");
-        System.out.println("      40\n  20      60\n10  30  50  70\nkey format as follow: node70");
+        System.out.println("      40\n  20      60\n10  30  50  70\nkey format as follow: 40");
         bSearchTree.insert("40",40);
         bSearchTree.insert("20", 20);
         bSearchTree.insert("60", 60);
@@ -130,6 +143,25 @@ public class main {
         System.out.println(bSearchTree.find(input));
     }
 
+    public static void minimum(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine();
+        System.out.println(bSearchTree.min());
+    }
+
+    public static void maximum(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine();
+        System.out.println(bSearchTree.max());
+    }
+
+    public static void treeHeight(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine();
+        System.out.println(bSearchTree.height());
+    }
+
+    public static void balancing(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine();
+        bSearchTree.balance();
+    }
 }
 
 

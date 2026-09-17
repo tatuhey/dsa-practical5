@@ -1,6 +1,6 @@
 // all of these are from lecture05
 
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class DSABinarySearchTree {
     private static class TreeNode {
@@ -52,7 +52,6 @@ public class DSABinarySearchTree {
         return findRec(key, m_root);
     }
 
-    // https://www.geeksforgeeks.org/dsa/binary-search-tree-set-1-search-and-insertion/
     private Object findRec(String key, TreeNode currNode) {
         Object value = null;
         if(currNode == null)
@@ -66,6 +65,7 @@ public class DSABinarySearchTree {
         return value;
     }
 
+    // https://www.geeksforgeeks.org/dsa/binary-search-tree-set-1-search-and-insertion/
     // private boolean findRec(String key, TreeNode currNode) {
     //     if(currNode == null)
     //         return false;
@@ -179,7 +179,7 @@ public class DSABinarySearchTree {
         return heightRec(m_root);
     }
 
-    public int heightRec(TreeNode currNode) {
+    private int heightRec(TreeNode currNode) {
         int htSoFar, iLeftHt, iRightHt;
         if(currNode == null)
             htSoFar = -1;
@@ -195,6 +195,7 @@ public class DSABinarySearchTree {
     }
 
     // balance()
+    // below 
 
     // inOrder(), preOrder(), and postOrder()
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php
@@ -207,7 +208,7 @@ public class DSABinarySearchTree {
         System.out.println();
     }
 
-    public void inOrderRec(TreeNode currNode) {
+    private void inOrderRec(TreeNode currNode) {
         if(currNode == null)
             return; // best case. end of branch reached
         inOrderRec(currNode.getLeft());
@@ -225,7 +226,7 @@ public class DSABinarySearchTree {
         System.out.println();
     }
 
-    public void preOrderRec(TreeNode currNode) {
+    private void preOrderRec(TreeNode currNode) {
         if(currNode == null)
             return;
         System.out.print(currNode.getKey() + ", ");
@@ -243,7 +244,7 @@ public class DSABinarySearchTree {
         System.out.println();
     }
 
-    public void postOrderRec(TreeNode currNode) {
+    private void postOrderRec(TreeNode currNode) {
         if(currNode == null)
             return;
         postOrderRec(currNode.getLeft());
@@ -251,27 +252,50 @@ public class DSABinarySearchTree {
         System.out.print(currNode.getKey() + ", ");
     }
 
-    // https://www.w3schools.com/dsa/dsa_data_binarytrees.php
-        public static void buildFixedTree() {
-        TreeNode node70 = new TreeNode("70", null);
-        TreeNode node30 = new TreeNode("30", null);
-        TreeNode node50 = new TreeNode("50", null);
-        TreeNode node10 = new TreeNode("10", null);
-        TreeNode node20 = new TreeNode("20", null);
-        TreeNode node40 = new TreeNode("40", null);
-        TreeNode node60 = new TreeNode("60", null);
-
-        node70.setLeft(node30);
-        node70.setRight(node50);
-
-        node30.setLeft(node10);
-        node30.setRight(node20);
-
-        node50.setLeft(node40);
-        node50.setRight(node60);
-
-        m_root = node70;
+    public void balance() {
+        System.out.println("The percentage score for the tree is: " + balanceCalc(m_root) + "%");
     }
+
+    // https://www.geeksforgeeks.org/dsa/count-number-of-nodes-in-a-complete-binary-tree/
+    private int countNodes(TreeNode currNode) {
+        if(currNode == null)
+            return 0;
+        return 1 + countNodes(currNode.getLeft()) + countNodes(currNode.getRight());
+    }
+
+    private double potentialNodes(TreeNode currNode) {
+        int height = heightRec(currNode);
+        double potNodes;
+        potNodes = Math.pow(2,(height+1)) - 1;
+        return potNodes;
+    }
+
+    private double balanceCalc(TreeNode currNode) {
+        double result = countNodes(currNode) / potentialNodes(currNode) * 100;
+        return result;
+    }
+
+    // https://www.w3schools.com/dsa/dsa_data_binarytrees.php
+    //     public static void buildFixedTree() {
+    //     TreeNode node70 = new TreeNode("70", null);
+    //     TreeNode node30 = new TreeNode("30", null);
+    //     TreeNode node50 = new TreeNode("50", null);
+    //     TreeNode node10 = new TreeNode("10", null);
+    //     TreeNode node20 = new TreeNode("20", null);
+    //     TreeNode node40 = new TreeNode("40", null);
+    //     TreeNode node60 = new TreeNode("60", null);
+
+    //     node70.setLeft(node30);
+    //     node70.setRight(node50);
+
+    //     node30.setLeft(node10);
+    //     node30.setRight(node20);
+
+    //     node50.setLeft(node40);
+    //     node50.setRight(node60);
+
+    //     m_root = node70;
+    // }
 
     // TO BALANCE**
     // taken from https://en.wikipedia.org/wiki/Day%E2%80%93Stout%E2%80%93Warren_algorithm
