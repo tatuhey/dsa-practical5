@@ -3,7 +3,7 @@
 import java.util.NoSuchElementException;
 
 public class DSABinarySearchTree {
-    private class TreeNode {
+    private static class TreeNode {
         private String m_key;
         private Object m_value;
         private TreeNode m_leftChild;
@@ -41,7 +41,7 @@ public class DSABinarySearchTree {
         }
     }
 
-    private TreeNode m_root;
+    private static TreeNode m_root;
 
     public DSABinarySearchTree() {
         m_root = null; 
@@ -52,6 +52,7 @@ public class DSABinarySearchTree {
         return findRec(key, m_root);
     }
 
+    // https://www.geeksforgeeks.org/dsa/binary-search-tree-set-1-search-and-insertion/
     private Object findRec(String key, TreeNode currNode) {
         Object value = null;
         if(currNode == null)
@@ -64,6 +65,17 @@ public class DSABinarySearchTree {
             value = findRec(key, currNode.getRight());
         return value;
     }
+
+    // private boolean findRec(String key, TreeNode currNode) {
+    //     if(currNode == null)
+    //         return false;
+    //     if(currNode.getKey().equals(key))
+    //         return true;
+    //     if(key.compareTo(currNode.getKey()) > 0)
+    //         return findRec(key, currNode.getRight());
+    //     return findRec(key, currNode.getLeft());
+    // }
+
 
     public void insert(String key, Object data) {
         m_root = insertRec(key, m_root, data);
@@ -240,7 +252,7 @@ public class DSABinarySearchTree {
     }
 
     // https://www.w3schools.com/dsa/dsa_data_binarytrees.php
-    public void buildFixedTree() {
+        public static void buildFixedTree() {
         TreeNode node70 = new TreeNode("70", null);
         TreeNode node30 = new TreeNode("30", null);
         TreeNode node50 = new TreeNode("50", null);

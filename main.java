@@ -1,5 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.tree.TreeNode;
 public class main {
 
     public static void main(String[] args ) {
@@ -10,7 +12,7 @@ public class main {
 
         while(selection != 0) {
             System.out.println("Select testing:");
-            System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Build fixed-tree\n0. Exit");
+            System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Build fixed-tree\n5. Find node\n0. Exit");
 
             try{
                 selection = sc.nextInt();
@@ -27,6 +29,8 @@ public class main {
                     case 4:
                         build(sc, bSearchTree);
                         break;
+                    case 5:
+                        finding(sc, bSearchTree);
                     case 0:
                         break;
                     default:
@@ -53,7 +57,12 @@ public class main {
             System.out.println("Invalid format. Format is <key,value>");
             return;
         }
-        bSearchTree.insert(arr[0].trim(), arr[1].trim()); // trim() to remove whitespaces around
+        try {
+            bSearchTree.insert(arr[0].trim(), arr[1].trim()); // trim() to remove whitespaces around
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + ". Try again");
+        }
+        
     }
 
     public static void deleting(Scanner sc, DSABinarySearchTree bSearchTree) {
@@ -103,8 +112,18 @@ public class main {
 
     public static void build(Scanner sc, DSABinarySearchTree bSearchTree) {
         System.out.println("The tree will look as below.");
-        System.out.println("      70\n  30      50\n10  20  40  60");
-        bSearchTree.buildFixedTree();
+        System.out.println("      70\n  30      50\n10  20  40  60\nkey format as follow: node70");
+        // bSearchTree.buildFixedTree();
+
+    }
+
+    public static void finding(Scanner sc, DSABinarySearchTree bSearchTree) {
+        sc.nextLine(); // to clear the leftover newline from the previous menu choice
+
+        System.out.println("Find a node below. Format is <key>");
+        String input;
+        input = sc.nextLine();
+        System.out.println(bSearchTree.find(input));
     }
 
 }
