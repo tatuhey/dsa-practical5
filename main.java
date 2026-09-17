@@ -52,6 +52,8 @@ public class main {
                 sc.nextLine();
                 System.out.println(e + ". Please input selection properly.");
                 
+            } catch (NoSuchElementException e2) {
+                System.out.println(e2);
             }
         }
     
@@ -144,22 +146,18 @@ public class main {
     }
 
     public static void minimum(Scanner sc, DSABinarySearchTree bSearchTree) {
-        sc.nextLine();
-        System.out.println(bSearchTree.min());
+        System.out.println(bSearchTree.min() + " is the smallest node");
     }
 
     public static void maximum(Scanner sc, DSABinarySearchTree bSearchTree) {
-        sc.nextLine();
-        System.out.println(bSearchTree.max());
+        System.out.println(bSearchTree.max() + " is the biggest node");
     }
 
     public static void treeHeight(Scanner sc, DSABinarySearchTree bSearchTree) {
-        sc.nextLine();
-        System.out.println(bSearchTree.height());
+        System.out.println("The height is: " + bSearchTree.height());
     }
 
     public static void balancing(Scanner sc, DSABinarySearchTree bSearchTree) {
-        sc.nextLine();
         bSearchTree.balance();
     }
 }
