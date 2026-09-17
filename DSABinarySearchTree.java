@@ -49,6 +49,8 @@ public class DSABinarySearchTree {
 
     //accessors
     public Object find(String key) {
+        if(m_root == null)
+            throw new NoSuchElementException("Tree is empty");
         return findRec(key, m_root);
     }
 
@@ -95,13 +97,15 @@ public class DSABinarySearchTree {
     }
 
     public void delete(String key) {
+        if(m_root == null)
+            throw new NoSuchElementException("Tree is empty");
         m_root = deleteRec(key, m_root);
     }
 
     private TreeNode deleteRec(String key, TreeNode currNode) {
         TreeNode updateNode = currNode;
         if(currNode == null)
-            System.out.println("Tree is empty");
+            System.out.println("Key " + key + " does not exists");
         else if(key.equals((currNode.getKey())))
             updateNode = deleteNode(key, currNode);
         else if(key.compareTo(currNode.getKey()) < 0)
@@ -176,6 +180,8 @@ public class DSABinarySearchTree {
     }
 
     public int height() {
+        if(m_root == null)
+            throw new NoSuchElementException("Tree is empty");
         return heightRec(m_root);
     }
 
@@ -201,8 +207,7 @@ public class DSABinarySearchTree {
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php
     public void inOrder() {
         if(m_root == null) {
-            System.out.println("Tree is empty");
-            return;
+            throw new NoSuchElementException("Tree is empty");
         }
         inOrderRec(m_root);
         System.out.println();
@@ -219,8 +224,7 @@ public class DSABinarySearchTree {
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php
     public void preOrder() {
         if(m_root == null) {
-            System.out.println("Tree is empty");
-            return;
+            throw new NoSuchElementException("Tree is empty");
         }
         preOrderRec(m_root);
         System.out.println();
@@ -237,8 +241,7 @@ public class DSABinarySearchTree {
     // https://www.w3schools.com/dsa/dsa_algo_binarytrees_postorder.php
     public void postOrder() {
         if(m_root == null) {
-            System.out.println("Tree is empty");
-            return;
+            throw new NoSuchElementException("Tree is empty");
         }
         postOrderRec(m_root);
         System.out.println();
@@ -271,6 +274,8 @@ public class DSABinarySearchTree {
     }
 
     private double balanceCalc(TreeNode currNode) {
+        if(currNode == null) 
+            throw new NoSuchElementException("Tree is empty");
         double result = countNodes(currNode) / potentialNodes(currNode) * 100;
         return result;
     }

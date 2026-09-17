@@ -84,7 +84,12 @@ public class main {
         System.out.println("Remove a node below. Format is <key>");
         String input;
         input = sc.nextLine();
+        // if(input == null) {
+        //     System.out.println("Input is empty");
+        //     return;
+        // } else
         bSearchTree.delete(input);
+        
     }
 
     public static void displaying(Scanner sc, DSABinarySearchTree bSearchTree) {
