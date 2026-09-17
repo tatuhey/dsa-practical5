@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class main {
 
@@ -11,24 +12,31 @@ public class main {
             System.out.println("Select testing:");
             System.out.println("1. Add node\n2. Delete node\n3. Display tree\n4. Build fixed-tree\n0. Exit");
 
-            selection = sc.nextInt();
-            switch(selection) {
-                case 1:
-                    adding(sc, bSearchTree);
-                    break;
-                case 2:
-                    deleting(sc, bSearchTree);
-                    break;
-                case 3:
-                    displaying(sc, bSearchTree);
-                    break;
-                case 4:
-                    build(sc, bSearchTree);
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Wrong selection");
+            try{
+                selection = sc.nextInt();
+                switch(selection) {
+                    case 1:
+                        adding(sc, bSearchTree);
+                        break;
+                    case 2:
+                        deleting(sc, bSearchTree);
+                        break;
+                    case 3:
+                        displaying(sc, bSearchTree);
+                        break;
+                    case 4:
+                        build(sc, bSearchTree);
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Wrong selection");
+                }
+            } catch (InputMismatchException e) {
+                selection = 10000;
+                sc.nextLine();
+                System.out.println(e + ". Please input selection properly.");
+                
             }
         }
     
@@ -64,25 +72,32 @@ public class main {
         while(sel != 0) {
             System.out.println("1. In-order traversal\n2. Pre-order traversal\n3. Post-order traversal\n0. exit");
 
-            sel = sc.nextInt();
-            switch(sel) {
-                case 1:
-                    System.out.println("In-order selected");
-                    bSearchTree.inOrder();
-                    break;
-                case 2:
-                    System.out.println("Pre-order selected");
-                    bSearchTree.preOrder();
-                    break;
-                case 3:
-                    System.out.println("Post-order selected.");
-                    bSearchTree.postOrder();
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Wrong selection");
+            try{
+                sel = sc.nextInt();
+                switch(sel) {
+                    case 1:
+                        System.out.println("In-order selected");
+                        bSearchTree.inOrder();
+                        break;
+                    case 2:
+                        System.out.println("Pre-order selected");
+                        bSearchTree.preOrder();
+                        break;
+                    case 3:
+                        System.out.println("Post-order selected.");
+                        bSearchTree.postOrder();
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Wrong selection");
+                }
+            } catch (InputMismatchException e) {
+                sel = 10000;
+                sc.nextLine();
+                System.out.println(e + ". Please input selection properly.");
             }
+            
         }
     }
 
